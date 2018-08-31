@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+    Open Financial Exchange Specification (c)2016 by: Intuit Inc., Innovision Corporation, 
+    and Thomson Reuters ("Publishers"). All rights reserved.
+
+    Publishers hereby grant to any party a royalty-free, worldwide, and perpetual license to review the Open
+    Financial Exchange Specification in order to provide input, suggestions and other feedback ("Feedback").
+    By providing Feedback, you (and your represented organization) grant to Publishers a perpetual,
+    irrevocable, non-exclusive, royalty-free, worldwide license, with the right to directly and indirectly
+    sublicense, to make, use, sell, copy, publish, and distribute the Feedback in any way.
+
+    THIS OPEN FINANCIAL EXCHANGE SPECIFICATION IS MADE AVAILABLE "AS IS" WITHOUT
+    WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW,
+    PUBLISHERS FURTHER DISCLAIM ALL WARRANTIES, INCLUDING WITHOUT LIMITATION
+    ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+    PURPOSE AND NONINFRINGEMENT, ALL OF WHICH ARE HEREBY DISCLAIMED. THE
+    ENTIRE RISK ARISING OUT OF THE USE OF THIS SPECIFICATION REMAINS WITH
+    RECIPIENT. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT
+    SHALL THE PUBLISHERS OF THIS SPECIFICATION BE LIABLE FOR ANY CONSEQUENTIAL,
+    INCIDENTAL, DIRECT, INDIRECT, SPECIAL, PUNITIVE, OR OTHER DAMAGES WHATSOEVER
+    (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS,
+    BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR OTHER PECUNIARY
+    LOSS) ARISING OUT OF ANY USE TO WHICH THIS SPECIFICATION IS PUT, EVEN IF THE
+    PUBLISHERS HEREOF HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+	Revision History:
+
+	Version	Date    	Editor Email Addr    		Short Description
+
+    1       2016-10-25  bill.cary@innovision.com    Introduction of Schedule K-1 for 1065, 1120S and 1041 entities.
+-->
+
+<xsd:schema 
+  elementFormDefault="unqualified"
+  targetNamespace="http://ofx.net/types/2003/04" 
+  xmlns:ofx="http://ofx.net/types/2003/04" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="OFX_TaxK1.xsd"/>
+  <xsd:complexType name="TaxK1Request">
+    <xsd:annotation>
+      <xsd:documentation>
+        The OFX element "TAXK1RQ" is of type "TaxK1Request"
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ACCTNUM" type="ofx:AccountIdType" minOccurs="0"/>
+      <xsd:element name="RECID" type="ofx:IdType" minOccurs="0"/>
+      <xsd:element name="TAXYEAR" type="ofx:YearType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TaxK1Response">
+    <xsd:annotation>
+      <xsd:documentation>
+        The OFX element "TAXK1RS" is of type "TaxK1Response"
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ACCTNUM" type="ofx:AccountIdType" minOccurs="0"/>
+      <xsd:element name="RECID" type="ofx:IdType" minOccurs="0"/>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="TAX1065K1_V100" type="ofx:Tax1065K1_V100"/>
+        <xsd:element name="TAX1120SK1_V100" type="ofx:Tax1120SK1_V100"/>
+        <xsd:element name="TAX1041K1_V100" type="ofx:Tax1041K1_V100"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

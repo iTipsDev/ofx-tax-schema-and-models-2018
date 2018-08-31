@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+
+	Open Financial Exchange Specification (c)1996-2003 ("Specification") by all of its publishers: 
+	CheckFree Corp., Intuit Inc., and Microsoft Corporation. All rights reserved. 
+
+	Revision History:
+
+	Version	Date    Editor Email Address    		Short Description
+
+    2017-08-31      brucevwilcox@itips.info         Added Form W-2G
+
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="unqualified"
+            xmlns:ofx="http://ofx.net/types/2003/04"
+            targetNamespace="http://ofx.net/types/2003/04">
+
+  <xsd:include schemaLocation = "OFX_TaxW2G.xsd" />
+
+  <xsd:complexType name="TaxW2GRequest">
+    <xsd:annotation>
+      <xsd:documentation>
+        The OFX element "TAXW2GRQ" is of type "TaxW2GRequest"
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="TAXYEAR" type="ofx:YearType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TaxW2GResponse">
+    <xsd:annotation>
+      <xsd:documentation>
+        The OFX element "TAXW2GRS" is of type "TaxW2GResponse"
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="TAXW2G_V100" type="ofx:TaxW2G_V100" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

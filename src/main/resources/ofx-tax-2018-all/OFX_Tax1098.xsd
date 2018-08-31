@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+
+	Open Financial Exchange Specification (c)1996-2003 ("Specification") by all of its publishers: 
+	CheckFree Corp., Intuit Inc., and Microsoft Corporation. All rights reserved. 
+
+	Revision History:
+
+	Version	Date    	Editor Email Addr    		Short Description
+
+	p18	2002-02-11  	altenburgd@businesslogic.com	Initial revision
+        p21     2002-03-17      altenburgd@businesslogic.com    Changed elementFormDefault to "unqualified"
+                                                                Changed namespace to "http://ofx.net/types/2003/04"
+Dec-6-2013  updated to include Mortgage Insurance and Prop Tax, and Account number. 
+Aug 14 2014 added 1098T and 1098E
+jUN25 2015 - 1098 - mortgageinsprem IS OBSOLETE; 1098e ADDED ACCOUNTNUMBER OPTIONAL TAG.
+Aug 24 2016 - 1098 MORTGAGEINSPREM is back;
+Oct 18 2017 christy_nicholson@intuit.com - Added <NUMMORTGAGEDPROP> to TAX1098_V100 as optional element to match IRS 2017 form update
+        2017-08-31      brucevwilcox@itips.info     Added 1098-C : Contributions of MotorVehicles, Boats, and Airplanes
+
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  xmlns:ofx="http://ofx.net/types/2003/04"
+  targetNamespace="http://ofx.net/types/2003/04">
+  <xsd:include schemaLocation = "OFX_Common.xsd" />
+
+  <xsd:complexType name="BorrowerAddress">
+    <xsd:annotation>
+      <xsd:documentation>
+        The OFX element "BORROWERADDR" is of type "BorrowerAddress"
+      </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:sequence>
+      <xsd:element name="BORROWERNAME" type="ofx:GenericNameType" />
+
+      <xsd:element name="ADDR1" type="ofx:AddressType"
+      minOccurs="0" maxOccurs="1" />
+
+      <xsd:element name="ADDR2" type="ofx:AddressType"
+      minOccurs="0" maxOccurs="1" />
+
+      <xsd:element name="ADDR3" type="ofx:AddressType"
+      minOccurs="0" maxOccurs="1" />
+
+      <xsd:element name="CITY" type="ofx:AddressType" minOccurs="0"
+      maxOccurs="1" />
+
+      <xsd:element name="STATE" type="ofx:StateType" minOccurs="0"
+      maxOccurs="1" />
+
+      <xsd:element name="POSTALCODE" type="ofx:ZipType"
+      minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="LenderAddress">
+    <xsd:annotation>
+      <xsd:documentation>
+        The OFX element "LENDERADDR" is of type "LenderAddress"
+      </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:sequence>
+      <xsd:element name="LENDERNAME" type="ofx:GenericNameType" />
+
+      <xsd:element name="ADDR1" type="ofx:AddressType"
+      minOccurs="0" maxOccurs="1" />
+
+      <xsd:element name="ADDR2" type="ofx:AddressType"
+      minOccurs="0" maxOccurs="1" />
+
+      <xsd:element name="ADDR3" type="ofx:AddressType"
+      minOccurs="0" maxOccurs="1" />
+
+      <xsd:element name="CITY" type="ofx:AddressType" minOccurs="0"
+      maxOccurs="1" />
+
+      <xsd:element name="STATE" type="ofx:StateType" minOccurs="0"
+      maxOccurs="1" />
+
+      <xsd:element name="POSTALCODE" type="ofx:ZipType"
+      minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="FilerAddress">
+    <xsd:sequence>
+      <xsd:element name="FILERNAME" type="ofx:GenericNameType"/>
+      <xsd:element name="ADDR1" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="CITY" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="STATE" type="ofx:StateType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="COUNTRYSTRING" type="ofx:CountryStringType" minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="StudentAddress">
+    <xsd:sequence>
+      <xsd:element name="STUDENTNAME" type="ofx:GenericNameType"/>
+      <xsd:element name="ADDR1" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="CITY" type="ofx:AddressType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="STATE" type="ofx:StateType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="COUNTRYSTRING" type="ofx:CountryStringType" minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="Tax1098_V100">
+    <xsd:annotation>
+      <xsd:documentation>
+        The OFX element "TAX1098_V100" is of type "Tax1098_V100"
+      </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SRVRTID" type="ofx:ServerIdType"/>
+			<xsd:element name="TAXYEAR" type="ofx:YearType"/>
+			
+			<xsd:element name="MORTGAGEINTEREST" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="OUTSTANDINGPRINCIPAL" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="ORIGINATIONDATE" type="ofx:DateTimeType" minOccurs="0"/>
+			<xsd:element name="POINTS" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="OVERPAIDREFUND" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="MORTGAGEINSPREM" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="PROPERTYTAX" type="ofx:AmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Property tax</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OTHERLOANINFO" type="ofx:GenericDescriptionType" minOccurs="0"/>
+			<xsd:element name="PROPADDRSAMEASBORROWER" type="ofx:BooleanType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="PROPADDRESS" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ADDR1" type="ofx:AddressType"/>
+							<xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+							<xsd:element name="CITY" type="ofx:AddressType" minOccurs="0"/>
+							<xsd:element name="STATE" type="ofx:StateType" minOccurs="0"/>
+							<xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="PROPDESCRIPTION" type="ofx:MessageType" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="LENDERADDR" type="ofx:LenderAddress" minOccurs="0"/>
+			<xsd:element name="LENDERID" type="ofx:GenericDescriptionType" minOccurs="0"/>
+			<xsd:element name="BORROWERADDR" type="ofx:BorrowerAddress" minOccurs="0"/>
+			<xsd:element name="BORROWERID" type="ofx:GenericDescriptionType" minOccurs="0"/>
+			<xsd:element name="ACCOUNTNUMBER" type="ofx:GenericDescriptionType" minOccurs="0"/>
+			<xsd:element name="NUMMORTGAGEDPROP"  minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>New TY17</xsd:documentation>
+				</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="4"/>
+							<xsd:pattern value="([0-9])"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+			</xsd:element>		
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Tax1098E_V100">
+		<xsd:annotation>
+			<xsd:documentation>The  OFX element "TAX1098E_V100" is of type 
+				"Tax1098E_V100"</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SRVRTID" type="ofx:ServerIdType" minOccurs="0"/>
+			<xsd:element name="TAXYEAR" type="ofx:YearType" minOccurs="0"/>
+			<xsd:element name="LENDERADDR" type="ofx:LenderAddress" minOccurs="0"/>
+			<xsd:element name="LENDERID" type="ofx:GenericNameType" minOccurs="0"/>
+			<xsd:element name="BORROWERID" type="ofx:GenericNameType" minOccurs="0"/>
+			<xsd:element name="BORROWERADDR" type="ofx:BorrowerAddress" minOccurs="0"/>
+			<xsd:element name="STUDENTLOANINTEREST" type="ofx:AmountType"/>
+			<xsd:element name="LOANPRIORSEP2004ANDNOLOF" type="ofx:BooleanType" minOccurs="0"/>
+			<xsd:element name="ACCOUNTNUMBER" type="ofx:GenericDescriptionType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Tax1098T_V100">
+		<xsd:annotation>
+			<xsd:documentation>The  OFX element "TAX1098T_V100" is of type "Tax1098T_V100"</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SRVRTID" type="ofx:ServerIdType" minOccurs="0"/>
+			<xsd:element name="TAXYEAR" type="ofx:YearType" minOccurs="0"/>
+			<xsd:element name="FILERID" type="ofx:GenericNameType" minOccurs="0"/>
+			<xsd:element name="STUDENTSOCSECNO" type="ofx:GenericNameType"/>
+			<xsd:element name="ACCOUNTNUMBER" type="ofx:GenericDescriptionType" minOccurs="0"/>
+			<xsd:element name="FILERADDR" type="ofx:FilerAddress" minOccurs="0"/>
+			<xsd:element name="STUDENTADDR" type="ofx:StudentAddress" minOccurs="0"/>
+			<xsd:element name="QUALIFIEDTUITION" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="BILLEDEXPENSE" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="CHANGEMETHOD" type="ofx:BooleanType" minOccurs="0"/>
+			<xsd:element name="ADJPRIORYEAR" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="SCHOLARSHIPS" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="ADJSCHOLARSHIP" type="ofx:AmountType" minOccurs="0"/>
+			<xsd:element name="INCLUDEJANMARCH" type="ofx:BooleanType" minOccurs="0"/>
+			<xsd:element name="HALFTIME" type="ofx:BooleanType" minOccurs="0"/>
+			<xsd:element name="GRADUATE" type="ofx:BooleanType" minOccurs="0"/>
+			<xsd:element name="INSURREIMB" type="ofx:AmountType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+    <!-- Types used by Form 1098-C -->
+
+    <xsd:complexType name="Abstract1098IssuerAddressType" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="ADDR1" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="CITY" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="STATE" type="ofx:StateType" minOccurs="0"/>
+            <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+            <xsd:element name="COUNTRYSTRING" type="ofx:CountryStringType" minOccurs="0"/>
+            <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DoneeAddressType">
+        <xsd:complexContent>
+            <xsd:extension base="ofx:Abstract1098IssuerAddressType">
+                <xsd:sequence>
+                    <xsd:element name="DONEENAME1" type="ofx:GenericNameType"/>
+                    <xsd:element name="DONEENAME2" type="ofx:GenericNameType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="Abstract1098RecipientAddressType" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="ADDR1" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="CITY" type="ofx:AddressType" minOccurs="0"/>
+            <xsd:element name="STATE" type="ofx:StateType" minOccurs="0"/>
+            <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    
+    <xsd:complexType name="DonorAddressType">
+        <xsd:complexContent>
+            <xsd:extension base="ofx:Abstract1098RecipientAddressType">
+                <xsd:sequence>
+                    <xsd:element name="DONORNAME1" type="ofx:GenericNameType"/>
+                    <xsd:element name="DONORNAME2" type="ofx:GenericNameType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="Tax1098C_V100">
+        <xsd:annotation>
+            <xsd:documentation>Form 1098-C - Contributions of Motor Vehicles, Boats, and Airplanes</xsd:documentation>
+        </xsd:annotation>
+
+
+        <xsd:sequence>
+
+            <xsd:element name="DONEEADDR" type="ofx:DoneeAddressType" minOccurs="0"/>
+            <xsd:element name="DONORADDR" type="ofx:DonorAddressType" minOccurs="0"/>
+
+
+            <xsd:element name="CORRECTED" type="ofx:BooleanType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>CORRECTED (if checked)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="DONEEID" type="ofx:GenericNameType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>DONEE’S federal identification number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="DONORID" type="ofx:IdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>DONOR’S identification number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="DATECONTRIB" type="ofx:DateTimeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 1. Date of contribution</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="ODOMETER" type="ofx:GenericNameType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 2a. Odometer mileage</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="CARYEAR" type="ofx:YearType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 2b. Year</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="MAKE" type="ofx:GenericNameType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 2c. Make</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="MODEL" type="ofx:GenericNameType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 2d. Model</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="VIN" type="ofx:GenericNameType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 3. Vehicle or other identification number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="ARMSLENGTH" type="ofx:BooleanType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 4a. Donee certifies that vehicle was sold in arm’s length transaction to unrelated party</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="DATESALE" type="ofx:DateTimeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 4b. Date of sale</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="PROCEEDS" type="ofx:AmountType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 4c. Gross proceeds from sale (see instructions)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="NOTTRANSFERRED" type="ofx:BooleanType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 5a. Donee certifies that vehicle will not be transferred for money, other property, or services before completion of material improvements or significant intervening use</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="NEEDY" type="ofx:BooleanType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 5b. Donee certifies that vehicle is to be transferred to a needy individual for significantly below fair market value in furtherance of donee’s charitable purpose</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="DESCIMPROVE" type="ofx:MessageType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 5c. Donee certifies the following detailed description of material improvements or significant intervening use and duration of use</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="EXCHANGE" type="ofx:BooleanType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 6a. Did you provide goods or services in exchange for the vehicle? Yes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="EXCHANGEVALUE" type="ofx:AmountType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 6b. Value of goods and services provided in exchange for the vehicle</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="RELIGIOUS" type="ofx:BooleanType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 6c. If this box is checked, donee certifies that the goods and services consisted solely of intangible religious benefits</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="DESCGOODS" type="ofx:MessageType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 6c. Describe the goods and services, if any, that were provided.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="DONATIONMAX" type="ofx:BooleanType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Box 7. Under the law, the donor may not claim a deduction of more than $500 for this vehicle if this box is checked</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="SRVRTID" type="ofx:ServerIdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Server id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="TAXYEAR" type="ofx:YearType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Tax year</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+
+        </xsd:sequence>
+
+
+    </xsd:complexType>
+
+</xsd:schema>
