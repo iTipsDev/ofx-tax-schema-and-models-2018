@@ -8,7 +8,7 @@ The official files are downloadable from: http://www.ofx.org/downloads.html.
 
 Also includes Apache Maven pom.xml for use with Java JAXB implementations of the schema.
 
-For tax year 2018, the tax schemas will be based on OFX 2.2 which include OAuth token support. These schemas are under development.
+For tax year 2018, the tax schemas will be based on OFX 2.2 which include OAuth token support.
 
 
 ## Folders 
@@ -27,14 +27,14 @@ src/main/resources/ofx-tax-2018-core
 
 ```
 
-Add on Schedule K-1 2018 tax schema files:
+2018 Schedules K-1 tax schema files:
 
 ```
 src/main/resources/ofx-tax-2018-k1
 
 ```
 
-Add on Additional Forms 2018 tax schema files:
+2018 Additional Forms tax schema files:
 
 ```
 src/main/resources/ofx-tax-2018-addl
