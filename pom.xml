@@ -10,9 +10,8 @@
     <version>2018.0.0-SNAPSHOT</version>
 
     <name>ofx-tax-schema-and-models-2018</name>
-    <description>A simple ofx-tax-schema-and-models-2018.</description>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+
+    <url>http://www.ofxtax.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

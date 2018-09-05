@@ -98,9 +98,6 @@
 			<xsd:element name="TAXW2MSGSET" type="ofx:TaxW2MessageSet"/>
 			<xsd:element name="TAX1095MSGSET" type="ofx:Tax1095MessageSet"/>
 			<xsd:element name="TAXK1MSGSET" type="ofx:TaxK1MessageSet"/>
-			<xsd:element name="TAX1097MSGSET" type="ofx:Tax1097MessageSet"/>
-			<xsd:element name="TAX5498MSGSET" type="ofx:Tax5498MessageSet"/>
-			<xsd:element name="TAXW2GMSGSET" type="ofx:TaxW2GMessageSet"/>
 		</xsd:choice>
 	</xsd:group>
 	<xsd:complexType name="AbstractMessageSet" abstract="true"/>
@@ -754,85 +751,6 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
-    <xsd:complexType name="Tax1097MessageSet">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX1097MSGSET" is of type "Tax1097MessageSet"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractMessageSet">
-                <xsd:sequence>
-                    <xsd:element name="TAX1097MSGSETV1" type="ofx:Tax1097MessageSetV1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="Tax1097MessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX1097MSGSETV1" is of type "Tax1097MessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractMessageSetVersion">
-                <xsd:sequence>
-                    <xsd:element name="TAX1097DNLD" type="ofx:BooleanType"/>
-                    <xsd:element name="TAXYEARSUPPORTED" type="ofx:YearType" maxOccurs="unbounded"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="Tax5498MessageSet">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX5498MSGSET" is of type "Tax5498MessageSet"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractMessageSet">
-                <xsd:sequence>
-                    <xsd:element name="TAX5498MSGSETV1" type="ofx:Tax5498MessageSetV1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="Tax5498MessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX5498MSGSETV1" is of type "Tax5498MessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractMessageSetVersion">
-                <xsd:sequence>
-                    <xsd:element name="TAX5498DNLD" type="ofx:BooleanType"/>
-                    <xsd:element name="TAXYEARSUPPORTED" type="ofx:YearType" maxOccurs="unbounded"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="TaxW2GMessageSet">
-        <xsd:annotation>
-            <xsd:documentation>
-        The OFX element "TAXW2GMSGSET" is of type "TaxW2GMessageSet"
-      </xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractMessageSet">
-                <xsd:sequence>
-                    <xsd:element name="TAXW2GMSGSETV1" type="ofx:TaxW2GMessageSetV1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="TaxW2GMessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>
-        The OFX element "TAXW2GMSGSETV1" is of type "TaxW2GMessageSetV1"
-      </xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractMessageSetVersion">
-                <xsd:sequence>
-                    <xsd:element name="TAXW2GDNLD" type="ofx:BooleanType"/>
-                    <xsd:element name="TAXYEARSUPPORTED" type="ofx:YearType" maxOccurs="unbounded"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
 	<xsd:complexType name="StopCheckProfile">
 		<xsd:annotation>
 			<xsd:documentation>

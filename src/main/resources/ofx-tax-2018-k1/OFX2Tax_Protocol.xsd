@@ -15,6 +15,7 @@
         p21     2002-03-17      altenburgd@businesslogic.com    Changed elementFormDefault to "unqualified"
                                                                 Changed namespace to "http://ofx.net/types/2003/04"
         RC4     2002-06-25      gil_clark@intuit.com            Removed include of OFX_Common.xsd
+                2016-10-25      bill.cary@innovision.com        Introduction of Schedule K-1 for 1065, 1120S and 1041 entities.
 -->
 
 <xsd:schema xmlns:ofx="http://ofx.net/types/2003/04"
@@ -28,9 +29,6 @@
 	<xsd:include schemaLocation="OFX_Tax1099_Message_Wrappers.xsd" />
 	<xsd:include schemaLocation="OFX_TaxW2_Message_Wrappers.xsd" />
 	<xsd:include schemaLocation="OFX_TaxK1_Message_Wrappers.xsd"/>
-	<xsd:include schemaLocation="OFX_Tax1097_Message_Wrappers.xsd"/>
-	<xsd:include schemaLocation="OFX_Tax5498_Message_Wrappers.xsd"/>
-	<xsd:include schemaLocation="OFX_TaxW2G_Message_Wrappers.xsd"/>
 	<xsd:complexType name="OFX">
 		<xsd:annotation>
 			<xsd:documentation>
@@ -46,9 +44,6 @@
 				<xsd:element name="TAXW2MSGSRQV1" type="ofx:TaxW2RequestMessageSetV1" minOccurs="0" maxOccurs="1" />
 				<xsd:element name="TAX1095MSGSRQV1" type="ofx:Tax1095RequestMessageSetV1" minOccurs="0" maxOccurs="1" />
 				<xsd:element name="TAXK1MSGSRQV1" type="ofx:TaxK1RequestMessageSetV1" minOccurs="0" maxOccurs="1" />
-				<xsd:element name="TAX1097MSGSRQV1" type="ofx:Tax1097RequestMessageSetV1" minOccurs="0" maxOccurs="1" />
-				<xsd:element name="TAX5498MSGSRQV1" type="ofx:Tax5498RequestMessageSetV1" minOccurs="0" maxOccurs="1" />
-				<xsd:element name="TAXW2GMSGSRQV1" type="ofx:TaxW2GRequestMessageSetV1" minOccurs="0" maxOccurs="1" />
 			</xsd:sequence>
 			<xsd:sequence>
 				<xsd:element name="SIGNONMSGSRSV1" type="ofx:SignonResponseMessageSetV1"/>
@@ -58,9 +53,6 @@
 				<xsd:element name="TAXW2MSGSRSV1" type="ofx:TaxW2ResponseMessageSetV1" minOccurs="0" maxOccurs="1" />
 				<xsd:element name="TAX1095MSGSRSV1" type="ofx:Tax1095ResponseMessageSetV1" minOccurs="0" maxOccurs="1" />
 				<xsd:element name="TAXK1MSGSRSV1" type="ofx:TaxK1ResponseMessageSetV1" minOccurs="0" maxOccurs="1" />
-				<xsd:element name="TAX1097MSGSRSV1" type="ofx:Tax1097ResponseMessageSetV1" minOccurs="0" maxOccurs="1" />
-				<xsd:element name="TAX5498MSGSRSV1" type="ofx:Tax5498ResponseMessageSetV1" minOccurs="0" maxOccurs="1" />
-				<xsd:element name="TAXW2GMSGSRSV1" type="ofx:TaxW2GResponseMessageSetV1" minOccurs="0" maxOccurs="1" />
 			</xsd:sequence>
 		</xsd:choice>
 	</xsd:complexType>
@@ -261,78 +253,6 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
-    <xsd:complexType name="Tax1097RequestMessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX1097MSGSRQV1" is of type "Tax1097RequestMessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractRequestMessageSet">
-                <xsd:sequence maxOccurs="unbounded">
-                    <xsd:element name="TAX1097TRNRQ" type="ofx:Tax1097TransactionRequest"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="Tax1097ResponseMessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX1097MSGSRSV1" is of type "Tax1097ResponseMessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractResponseMessageSet">
-                <xsd:sequence maxOccurs="unbounded">
-                    <xsd:element name="TAX1097TRNRS" type="ofx:Tax1097TransactionResponse"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="Tax5498RequestMessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX5498MSGSRQV1" is of type "Tax5498RequestMessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractRequestMessageSet">
-                <xsd:sequence maxOccurs="unbounded">
-                    <xsd:element name="TAX5498TRNRQ" type="ofx:Tax5498TransactionRequest"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="Tax5498ResponseMessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAX5498MSGSRSV1" is of type "Tax5498ResponseMessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractResponseMessageSet">
-                <xsd:sequence maxOccurs="unbounded">
-                    <xsd:element name="TAX5498TRNRS" type="ofx:Tax5498TransactionResponse"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="TaxW2GRequestMessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAXW2GMSGSRQV1" is of type "TaxW2GRequestMessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractRequestMessageSet">
-                <xsd:sequence maxOccurs="unbounded">
-                    <xsd:element name="TAXW2GTRNRQ" type="ofx:TaxW2GTransactionRequest"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="TaxW2GResponseMessageSetV1">
-        <xsd:annotation>
-            <xsd:documentation>The OFX element "TAXW2GMSGSRSV1" is of type "TaxW2GResponseMessageSetV1"</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="ofx:AbstractResponseMessageSet">
-                <xsd:sequence maxOccurs="unbounded">
-                    <xsd:element name="TAXW2GTRNRS" type="ofx:TaxW2GTransactionResponse"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
 	<xsd:complexType name="AbstractRequestMessageSet" abstract="true">
 		<xsd:complexContent>
 			<xsd:extension base="ofx:AbstractTopLevelMessageSet"/>

@@ -26,7 +26,7 @@ public class OfxStringValidator {
 
     public static final String OUTPUT_ENCODING = "UTF-8";
 
-    public static final String OFX_SCHEMA_FILE_NAME = "/xsd/OFX2Tax_Protocol.xsd";
+    public static final String OFX_SCHEMA_FILE_NAME = "/ofx-tax-2018-all/OFX2Tax_Protocol.xsd";
 
     private static final URL OFX_SCHEMA_LOCATION_AS_URL = getSchemaUrl( OFX_SCHEMA_FILE_NAME );
 

@@ -32,36 +32,36 @@
 
 -->
 
-<xsd:schema elementFormDefault="unqualified" targetNamespace="http://ofx.net/types/2003/04" xmlns:ofx="http://ofx.net/types/2003/04" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-
-  <xsd:include schemaLocation="OFX_Common.xsd"/>
-
-  <xsd:include schemaLocation="OFX_Tax5498_Messages.xsd"/>
-  
-  <xsd:complexType name="Tax5498TransactionRequest">
-    <xsd:annotation>
-      <xsd:documentation>The OFX element "TAX5498TRNRQ" is of type "Tax5498TransactionRequest"</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="TRNUID" type="ofx:GloballyUniqueUserIdType"/>
-      <xsd:element name="CLTCOOKIE" type="ofx:IdType" minOccurs="0"/>
-      <xsd:element name="TAN" type="ofx:TransactionAuthorizationNumberType" minOccurs="0"/>
-      <xsd:element name="OFXEXTENSION" type="ofx:OFXExtensionType" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="TAX5498RQ" type="ofx:Tax5498Request"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  
-  <xsd:complexType name="Tax5498TransactionResponse">
-    <xsd:annotation>
-      <xsd:documentation>The OFX element "TAX5498TRNRS" is of type "Tax5498TransactionResponse"</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="TRNUID" type="ofx:GloballyUniqueUserIdType"/>
-      <xsd:element name="STATUS" type="ofx:Status"/>
-      <xsd:element name="CLTCOOKIE" type="ofx:IdType" minOccurs="0"/>
-      <xsd:element name="OFXEXTENSION" type="ofx:OFXExtensionType" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="TAX5498RS" type="ofx:Tax5498Response" minOccurs="0"/>
-    </xsd:sequence>
-  </xsd:complexType>
-
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ofx="http://ofx.net/types/2003/04" targetNamespace="http://ofx.net/types/2003/04" elementFormDefault="unqualified">
+	
+	<xsd:include schemaLocation="OFX_Tax5498.xsd"/>
+    
+	<xsd:complexType name="Tax5498Request">
+		<xsd:annotation>
+			<xsd:documentation>
+        The OFX element "TAX5498RQ" is of type "Tax5498Request"
+      </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ACCTNUM" type="ofx:AccountIdType" minOccurs="0"/>
+			<xsd:element name="SSN" type="ofx:GenericNameType" minOccurs="0"/>
+			<xsd:element name="TAXYEAR" type="ofx:YearType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Tax5498Response">
+		<xsd:annotation>
+			<xsd:documentation>The OFX element "TAX5498RS" is of type "Tax5498Response"</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ACCTNUM" type="ofx:AccountIdType" minOccurs="0"/>
+			<xsd:element name="SSN" type="ofx:GenericNameType" minOccurs="0"/>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:element name="TAX5498_V100" type="ofx:Tax5498_V100"/>
+                <xsd:element name="TAX5498ESA_V100" type="ofx:Tax5498ESA_V100"/>
+                <xsd:element name="TAX5498SA_V100" type="ofx:Tax5498SA_V100"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	
 </xsd:schema>
