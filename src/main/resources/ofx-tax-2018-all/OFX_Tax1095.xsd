@@ -2,8 +2,8 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Kathy Eusepi (Intuit) -->
 <!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Jessica Wakefield (Intuit, Inc.) -->
 <!--
-	Open Financial Exchange Specification (c)1996-2003 ("Specification") by all of its publishers: 
-	CheckFree Corp., Intuit Inc., and Microsoft Corporation. All rights reserved. 
+	Open Financial Exchange Specification (c)1996-2003 ("Specification") by all of its publishers:
+	CheckFree Corp., Intuit Inc., and Microsoft Corporation. All rights reserved.
 
 	Revision History:
 
@@ -15,7 +15,7 @@
  Apr21 2015 - updated for 2015
 Apr27 2015 - changed 1095-B and 1095-C  required tags to optional
   Sep 28 2015: added to 1095-C new optional tag <PLANSTARTMONTH>;
-     
+
 -->
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ofx="http://ofx.net/types/2003/04" targetNamespace="http://ofx.net/types/2003/04" elementFormDefault="unqualified">
 	<xsd:include schemaLocation="OFX_Common.xsd"/>
@@ -92,24 +92,46 @@ Apr27 2015 - changed 1095-B and 1095-C  required tags to optional
 			<xsd:element name="COUNTRYSTRING" type="ofx:CountryStringType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="CoveredIndivGrpType">
-		<xsd:annotation>
-			<xsd:documentation>OFX element "COVEREDINDIVIDUAL" is of type "CoveredIndivGrpTpye</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="PERSONNM" type="ofx:GenericNameType">
-				<xsd:annotation>
-					<xsd:documentation>The name of the covered individual on the health plan
+    <xsd:complexType name="CoveredIndivGrpType">
+        <xsd:annotation>
+            <xsd:documentation>OFX element "COVEREDINDIVIDUAL" is of type "CoveredIndivGrpTpye</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element name="PERSONNM" type="ofx:GenericNameType">
+                    <xsd:annotation>
+                        <xsd:documentation>The name of the covered individual on the health plan
+                            </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:sequence>
+                    <xsd:element name="PERSONFIRSTNM" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>The first name of the covered individual on the health plan
+                                </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="PERSONMI" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>The middle initial of the covered individual on the health plan
+                                </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="PERSONLASTNM" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>The last name of the covered individual on the health plan
+                                </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:choice>
+            <xsd:choice>
+                <xsd:element name="SSN" type="ofx:GenericNameType">
+                    <xsd:annotation>
+                        <xsd:documentation>The SSN of the covered individual on the health plan
                         </xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:choice>
-				<xsd:element name="SSN" type="ofx:GenericNameType">
-					<xsd:annotation>
-						<xsd:documentation>The SSN of the covered individual on the health plan
-                        </xsd:documentation>
-					</xsd:annotation>
-				</xsd:element>
+                    </xsd:annotation>
+                </xsd:element>
 				<xsd:element name="PERSONBIRTHDT" type="ofx:DateTimeType">
 					<xsd:annotation>
 						<xsd:documentation>The date of birth of the covered individual on the health plan when SSN is not present
@@ -415,7 +437,7 @@ Apr27 2015 - changed 1095-B and 1095-C  required tags to optional
 					</xsd:element>
 					<xsd:element name="SHOPIDENTIFIER" type="ofx:GenericNameType" minOccurs="0">
 						<xsd:annotation>
-							<xsd:documentation>The ID of the Small Business Health Options Program (SHOP). If applicable.  
+							<xsd:documentation>The ID of the Small Business Health Options Program (SHOP). If applicable.
                         </xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>

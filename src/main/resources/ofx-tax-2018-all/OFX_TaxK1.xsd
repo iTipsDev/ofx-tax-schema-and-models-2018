@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 
 <!--
-    Open Financial Exchange Specification (c)2016 by: Intuit Inc., Innovision Corporation, 
+    Open Financial Exchange Specification (c)2016 by: Intuit Inc., Innovision Corporation,
     and Thomson Reuters ("Publishers"). All rights reserved.
 
     Publishers hereby grant to any party a royalty-free, worldwide, and perpetual license to review the Open
@@ -167,24 +167,45 @@
 					<xsd:element name="PARTNERSHARELIAB" minOccurs="0">
 						<xsd:complexType>
 							<xsd:sequence>
+                                <xsd:element name="NONRECOURSELIABILITIESBOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of liability at beginning of year: NonRecourse
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="QUALNONRECOURSEFINANCEBOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of liability at beginning of year: Qualified NonRecourse Financing
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="RECOURSEBOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of liability at beginning of year: Recourse
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
 								<xsd:element name="NONRECOURSELIABILITIES" type="ofx:AmountType">
 									<xsd:annotation>
 										<xsd:documentation>
-											Partner's share of liability at year end: NonRecourse 
+											Partner's share of liability at year end: NonRecourse
 										</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="QUALNONRECOURSEFINANCE" type="ofx:AmountType">
 									<xsd:annotation>
 										<xsd:documentation>
-											Partner's share of liability at year end: Qualified NonRecourse Financing 
+											Partner's share of liability at year end: Qualified NonRecourse Financing
 										</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="RECOURSE" type="ofx:AmountType">
 									<xsd:annotation>
 										<xsd:documentation>
-											Partner's share of liability at year end: Recourse 
+											Partner's share of liability at year end: Recourse
 										</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
@@ -279,6 +300,7 @@
 					<xsd:element name="INTEREST" type="ofx:AmountType" minOccurs="0"/>
 					<xsd:element name="ORDINARYDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
 					<xsd:element name="QUALIFIEDDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="DIVIDENDEQUIVALENTS" type="ofx:AmountType" minOccurs="0"/>
 					<xsd:element name="ROYALTIES" type="ofx:AmountType" minOccurs="0"/>
 					<xsd:element name="NETSTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
 					<xsd:element name="NETLTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
