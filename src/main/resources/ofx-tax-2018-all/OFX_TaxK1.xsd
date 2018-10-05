@@ -24,149 +24,149 @@
     LOSS) ARISING OUT OF ANY USE TO WHICH THIS SPECIFICATION IS PUT, EVEN IF THE
     PUBLISHERS HEREOF HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-	Revision History:
+    Revision History:
 
-	Version	Date    	Editor Email Addr    		Short Description
+    Version    Date        Editor Email Addr            Short Description
 
-    1       2016-10-25  bill.cary@innovision.com    Introduction of Schedule K-1 for 1065, 1120S and 1041 entities.
+    1          2016-10-25  bill.cary@innovision.com     Introduction of Schedule K-1 for 1065, 1120S and 1041 entities.
 -->
 
 <xsd:schema targetNamespace="http://ofx.net/types/2003/04" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ofx="http://ofx.net/types/2003/04" elementFormDefault="unqualified">
-	<xsd:include schemaLocation="OFX_Common.xsd"/>
-	<xsd:complexType name="AbstractTaxFormK1" abstract="true">
-		<xsd:sequence>
-			<xsd:element name="SRVRTID" type="ofx:ServerIdType"/>
-			<xsd:element name="TAXYEAR" type="ofx:YearType"/>
-			<xsd:element name="VOID" type="ofx:BooleanType" minOccurs="0"/>
-			<xsd:element name="CORRECTED" type="ofx:BooleanType" minOccurs="0"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="Tax1065K1_V100">
-		<xsd:annotation>
-			<xsd:documentation>The OFX element "TAX1065K1_V100" is of type "Tax1065K1_V100"</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="ofx:AbstractTaxFormK1">
-				<xsd:sequence>
-					<xsd:element name="FINALK1" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="AMENDEDK1" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="PARTNERSHIPNAME" type="ofx:GenericNameType">
-						<xsd:annotation>
-							<xsd:documentation>Name of Partnership</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="PARTNERSHIPEIN" type="ofx:GenericNameType">
-						<xsd:annotation>
-							<xsd:documentation>Fed ID#</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="PARTNERSHIPADDRESS" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Partnership's address; Schedule K-1 Part I Line B
-							</xsd:documentation>
-						</xsd:annotation>
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="ADDR1" type="ofx:AddressType"/>
-								<xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="CITY" type="ofx:AddressType"/>
-								<xsd:element name="STATE" type="ofx:StateType"/>
-								<xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
-								<xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="IRSCENTER" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="PUBLICLYTRADEDPARTNERSHIP" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="PARTNERID" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="PARTNERINFO" minOccurs="0">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="NAME" type="ofx:GenericNameType"/>
-								<xsd:element name="ADDR1" type="ofx:AddressType"/>
-								<xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="CITY" type="ofx:AddressType"/>
-								<xsd:element name="STATE" type="ofx:StateType"/>
-								<xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
-								<xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:choice minOccurs="0">
-   					    <xsd:element name="GENERALPARTNER" type="ofx:BooleanType"/>
-					    <xsd:element name="LIMITEDPARTNER" type="ofx:BooleanType"/>
-					</xsd:choice>
-					<xsd:choice minOccurs="0">
-						<xsd:element name="DOMESTICPARTNER" type="ofx:BooleanType"/>
-						<xsd:element name="FOREIGNPARTNER" type="ofx:BooleanType"/>
-					</xsd:choice>
-					<xsd:element name="PARTNERENTITYTYPE" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="PARTNERISRETIREMENTPLAN" type="ofx:BooleanType" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Is the partner a retirement plan (IRA/SEP/Keogh/etc.)
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="PARTNERSSHAREPROFITLOSSCAPITAL" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Partner's share of profit, loss, and capital
-							</xsd:documentation>
-						</xsd:annotation>
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="PROFITBOY" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of profit beginning of year (percentage)
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="PROFITEOY" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of profit end of year (percentage)
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="LOSSBOY" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of loss beginning of year (percentage)
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="LOSSEOY" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of loss end of year (percentage)
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="CAPITALBOY" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of capital beginning of year (percentage)
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="CAPITALEOY" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of capital end of year (percentage)
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="PARTNERSHARELIAB" minOccurs="0">
-						<xsd:complexType>
-							<xsd:sequence>
+    <xsd:include schemaLocation="OFX_Common.xsd"/>
+    <xsd:complexType name="AbstractTaxFormK1" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="SRVRTID" type="ofx:ServerIdType"/>
+            <xsd:element name="TAXYEAR" type="ofx:YearType"/>
+            <xsd:element name="VOID" type="ofx:BooleanType" minOccurs="0"/>
+            <xsd:element name="CORRECTED" type="ofx:BooleanType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Tax1065K1_V100">
+        <xsd:annotation>
+            <xsd:documentation>The OFX element "TAX1065K1_V100" is of type "Tax1065K1_V100"</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ofx:AbstractTaxFormK1">
+                <xsd:sequence>
+                    <xsd:element name="FINALK1" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="AMENDEDK1" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="PARTNERSHIPNAME" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>Name of Partnership</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="PARTNERSHIPEIN" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>Fed ID#</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="PARTNERSHIPADDRESS" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Partnership's address; Schedule K-1 Part I Line B
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="ADDR1" type="ofx:AddressType"/>
+                                <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="CITY" type="ofx:AddressType"/>
+                                <xsd:element name="STATE" type="ofx:StateType"/>
+                                <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+                                <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="IRSCENTER" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="PUBLICLYTRADEDPARTNERSHIP" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="PARTNERID" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="PARTNERINFO" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="NAME" type="ofx:GenericNameType"/>
+                                <xsd:element name="ADDR1" type="ofx:AddressType"/>
+                                <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="CITY" type="ofx:AddressType"/>
+                                <xsd:element name="STATE" type="ofx:StateType"/>
+                                <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+                                <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:choice minOccurs="0">
+                           <xsd:element name="GENERALPARTNER" type="ofx:BooleanType"/>
+                        <xsd:element name="LIMITEDPARTNER" type="ofx:BooleanType"/>
+                    </xsd:choice>
+                    <xsd:choice minOccurs="0">
+                        <xsd:element name="DOMESTICPARTNER" type="ofx:BooleanType"/>
+                        <xsd:element name="FOREIGNPARTNER" type="ofx:BooleanType"/>
+                    </xsd:choice>
+                    <xsd:element name="PARTNERENTITYTYPE" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="PARTNERISRETIREMENTPLAN" type="ofx:BooleanType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Is the partner a retirement plan (IRA/SEP/Keogh/etc.)
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="PARTNERSSHAREPROFITLOSSCAPITAL" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Partner's share of profit, loss, and capital
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="PROFITBOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of profit beginning of year (percentage)
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PROFITEOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of profit end of year (percentage)
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="LOSSBOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of loss beginning of year (percentage)
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="LOSSEOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of loss end of year (percentage)
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="CAPITALBOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of capital beginning of year (percentage)
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="CAPITALEOY" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of capital end of year (percentage)
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="PARTNERSHARELIAB" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:sequence>
                                 <xsd:element name="NONRECOURSELIABILITIESBOY" type="ofx:AmountType">
                                     <xsd:annotation>
                                         <xsd:documentation>
@@ -188,455 +188,455 @@
                                         </xsd:documentation>
                                     </xsd:annotation>
                                 </xsd:element>
-								<xsd:element name="NONRECOURSELIABILITIES" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of liability at year end: NonRecourse
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="QUALNONRECOURSEFINANCE" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of liability at year end: Qualified NonRecourse Financing
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="RECOURSE" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's share of liability at year end: Recourse
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="PARTNERSCAPITALACCT" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Partner's capital account analysis
-							</xsd:documentation>
-						</xsd:annotation>
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="PRTNRBEGINNINGCAPITALACCT" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's capital account analysis: beginning capital account; Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="PRTNRCAPCONTRIBUTEDDURINGYR" type="ofx:AmountType" minOccurs="0">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's capital account analysis: capital contributed during the year; Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="PRTNRCURRENTYRINCRDECR" type="ofx:AmountType" minOccurs="0">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's capital account analysis: current year increase (decrease); Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="PRTNRWITHDRAWANDDISTRIBUTION" type="ofx:AmountType" minOccurs="0">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's capital account analysis: Withdraws &amp; Distributions; Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="PRTNRENDINGCAPITALACCOUNT" type="ofx:AmountType">
-									<xsd:annotation>
-										<xsd:documentation>
-											Partner's capital account analysis: ending capital account; Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="TAXBASIS" type="ofx:BooleanType" minOccurs="0">
-									<xsd:annotation>
-										<xsd:documentation>
-											Tax basis; Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="GAAP" type="ofx:BooleanType" minOccurs="0">
-									<xsd:annotation>
-										<xsd:documentation>
-											GAAP; Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="SECTION704BBOOK" type="ofx:BooleanType" minOccurs="0">
-									<xsd:annotation>
-										<xsd:documentation>
-											Section 704(b) book; Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-								<xsd:element name="OTHEREXPLAIN" type="ofx:BooleanType" minOccurs="0">
-									<xsd:annotation>
-										<xsd:documentation>
-											Other (explain); Schedule K-1 Part II Line L
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:element>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="PARTNERCONTRIBPROP" type="ofx:BooleanType" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Did the partner contribute property with a built-in gain or loss?
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="ORDINARYINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETRENTALREINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERRENTALINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="GUARANTEDPAYMENT" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="INTEREST" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="ORDINARYDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="QUALIFIEDDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
+                                <xsd:element name="NONRECOURSELIABILITIES" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of liability at year end: NonRecourse
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="QUALNONRECOURSEFINANCE" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of liability at year end: Qualified NonRecourse Financing
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="RECOURSE" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's share of liability at year end: Recourse
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="PARTNERSCAPITALACCT" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Partner's capital account analysis
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="PRTNRBEGINNINGCAPITALACCT" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's capital account analysis: beginning capital account; Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PRTNRCAPCONTRIBUTEDDURINGYR" type="ofx:AmountType" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's capital account analysis: capital contributed during the year; Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PRTNRCURRENTYRINCRDECR" type="ofx:AmountType" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's capital account analysis: current year increase (decrease); Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PRTNRWITHDRAWANDDISTRIBUTION" type="ofx:AmountType" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's capital account analysis: Withdraws &amp; Distributions; Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PRTNRENDINGCAPITALACCOUNT" type="ofx:AmountType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Partner's capital account analysis: ending capital account; Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="TAXBASIS" type="ofx:BooleanType" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Tax basis; Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="GAAP" type="ofx:BooleanType" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            GAAP; Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="SECTION704BBOOK" type="ofx:BooleanType" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Section 704(b) book; Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="OTHEREXPLAIN" type="ofx:BooleanType" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:documentation>
+                                            Other (explain); Schedule K-1 Part II Line L
+                                        </xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="PARTNERCONTRIBPROP" type="ofx:BooleanType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Did the partner contribute property with a built-in gain or loss?
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ORDINARYINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETRENTALREINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERRENTALINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="GUARANTEDPAYMENT" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="INTEREST" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="ORDINARYDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="QUALIFIEDDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
                     <xsd:element name="DIVIDENDEQUIVALENTS" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="ROYALTIES" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETSTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETLTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="COLLECTIBLES" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="UNRECAPSEC1250GAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETSEC1231GAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERINCOMELOSS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="SEC179DEDUCT" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="SELFEMPLOY" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="CREDITS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="FOREIGNCOUNTRY" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="FOREIGNTRANSACTIONS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="AMTITEMS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="TAXEXEMPT" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="DISTRIBUTIONS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="OTHERINFO" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="Tax1120SK1_V100">
-		<xsd:annotation>
-			<xsd:documentation>
+                    <xsd:element name="ROYALTIES" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETSTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETLTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="COLLECTIBLES" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="UNRECAPSEC1250GAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETSEC1231GAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERINCOMELOSS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="SEC179DEDUCT" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="SELFEMPLOY" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="CREDITS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="FOREIGNCOUNTRY" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="FOREIGNTRANSACTIONS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="AMTITEMS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="TAXEXEMPT" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="DISTRIBUTIONS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="OTHERINFO" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Tax1120SK1_V100">
+        <xsd:annotation>
+            <xsd:documentation>
         The OFX element "TAX1120SK1_V100" is of type "Tax1120SK1_V100"
       </xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="ofx:AbstractTaxFormK1">
-				<xsd:sequence>
-					<xsd:element name="FINALK1" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="AMENDEDK1" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="CORPNAME" type="ofx:GenericNameType">
-						<xsd:annotation>
-							<xsd:documentation>Name of S-Corp</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="CORPEIN" type="ofx:GenericNameType">
-						<xsd:annotation>
-							<xsd:documentation>Fed ID#</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="CORPADDRESS" minOccurs="0">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="ADDR1" type="ofx:AddressType"/>
-								<xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="CITY" type="ofx:AddressType"/>
-								<xsd:element name="STATE" type="ofx:StateType"/>
-								<xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
-								<xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="IRSCENTER" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="SHAREHOLDERID" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="SHAREHOLDERNAME" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="SHAREHOLDERADDRESS" minOccurs="0">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="ADDR1" type="ofx:AddressType"/>
-								<xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="CITY" type="ofx:AddressType"/>
-								<xsd:element name="STATE" type="ofx:StateType"/>
-								<xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
-								<xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="PERCENTAGESTOCKOWNERSHIP" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="ORDINARYINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETRENTALREINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERRENTALINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="INTERESTINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="ORDINARYDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="QUALIFIEDDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="ROYALTIES" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETSTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETLTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="COLLECTIBLES" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="UNRECAPSEC1250GAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETSEC1231GAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERINCOMELOSS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="SEC179DEDUCT" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="CREDITS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="FOREIGNCOUNTRY" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="FOREIGNTRANSACTIONS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="AMTITEMS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="ITEMSAFFECTINGSHAREHOLDERBASIS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="OTHERINFO" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="Tax1041K1_V100">
-		<xsd:annotation>
-			<xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ofx:AbstractTaxFormK1">
+                <xsd:sequence>
+                    <xsd:element name="FINALK1" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="AMENDEDK1" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="CORPNAME" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>Name of S-Corp</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CORPEIN" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>Fed ID#</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CORPADDRESS" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="ADDR1" type="ofx:AddressType"/>
+                                <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="CITY" type="ofx:AddressType"/>
+                                <xsd:element name="STATE" type="ofx:StateType"/>
+                                <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+                                <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="IRSCENTER" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="SHAREHOLDERID" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="SHAREHOLDERNAME" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="SHAREHOLDERADDRESS" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="ADDR1" type="ofx:AddressType"/>
+                                <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="CITY" type="ofx:AddressType"/>
+                                <xsd:element name="STATE" type="ofx:StateType"/>
+                                <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+                                <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="PERCENTAGESTOCKOWNERSHIP" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="ORDINARYINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETRENTALREINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERRENTALINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="INTERESTINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="ORDINARYDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="QUALIFIEDDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="ROYALTIES" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETSTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETLTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="COLLECTIBLES" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="UNRECAPSEC1250GAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETSEC1231GAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERINCOMELOSS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="SEC179DEDUCT" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="CREDITS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="FOREIGNCOUNTRY" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="FOREIGNTRANSACTIONS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="AMTITEMS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="ITEMSAFFECTINGSHAREHOLDERBASIS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="OTHERINFO" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Tax1041K1_V100">
+        <xsd:annotation>
+            <xsd:documentation>
         The OFX element "TAX1041K1_V100" is of type "Tax1041K1_V100"
       </xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="ofx:AbstractTaxFormK1">
-				<xsd:sequence>
-					<xsd:element name="FINALK1" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="AMENDEDK1" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="ESTATETRUSTNAME" type="ofx:GenericNameType">
-						<xsd:annotation>
-							<xsd:documentation>Name of Estate/Trust</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="ESTATETRUSTEIN" type="ofx:GenericNameType">
-						<xsd:annotation>
-							<xsd:documentation>Fed ID#</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="FIDUCIARYINFO" minOccurs="0">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="NAME" type="ofx:GenericNameType"/>
-								<xsd:element name="ADDR1" type="ofx:AddressType"/>
-								<xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="CITY" type="ofx:AddressType"/>
-								<xsd:element name="STATE" type="ofx:StateType"/>
-								<xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
-								<xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="WASFILEDFORM1041T" type="ofx:BooleanType" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Was Form 1041-T filed?
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="DATEFILEDFORM1041T" type="ofx:DateTimeType" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Date the Form 1041-T was filed
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="ISFINAL1041T" type="ofx:BooleanType" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>
-								Is this the final Form 1041 for the estate or trust?
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="BENEFICIARYID" type="ofx:GenericNameType" minOccurs="0"/>
-					<xsd:element name="BENEFICIARYINFO" minOccurs="0">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="NAME" type="ofx:GenericNameType"/>
-								<xsd:element name="ADDR1" type="ofx:AddressType"/>
-								<xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
-								<xsd:element name="CITY" type="ofx:AddressType"/>
-								<xsd:element name="STATE" type="ofx:StateType"/>
-								<xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
-								<xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="DOMESTICBENEFICIARY" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="FOREIGNBENEFICIARY" type="ofx:BooleanType" minOccurs="0"/>
-					<xsd:element name="INTERESTINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="ORDINARYDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="QUALIFIEDDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETSTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETLTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="RATEGAIN28" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="UNRECAP1250GAIN" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERPORTFOLIOINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="ORDINARYBUSINESSINC" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="NETRENTALREINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="OTHERRENTALINCOME" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="APPORTIONDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="ESTATETAXDEDUCTION" type="ofx:AmountType" minOccurs="0"/>
-					<xsd:element name="FINALYRDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="AMTITEMS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="CREDITS" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="OTHERINFO" minOccurs="0" maxOccurs="unbounded">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
-								<xsd:element name="AMOUNT" type="ofx:AmountType"/>
-							</xsd:sequence>
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ofx:AbstractTaxFormK1">
+                <xsd:sequence>
+                    <xsd:element name="FINALK1" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="AMENDEDK1" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="ESTATETRUSTNAME" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>Name of Estate/Trust</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ESTATETRUSTEIN" type="ofx:GenericNameType">
+                        <xsd:annotation>
+                            <xsd:documentation>Fed ID#</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="FIDUCIARYINFO" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="NAME" type="ofx:GenericNameType"/>
+                                <xsd:element name="ADDR1" type="ofx:AddressType"/>
+                                <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="CITY" type="ofx:AddressType"/>
+                                <xsd:element name="STATE" type="ofx:StateType"/>
+                                <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+                                <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="WASFILEDFORM1041T" type="ofx:BooleanType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Was Form 1041-T filed?
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="DATEFILEDFORM1041T" type="ofx:DateTimeType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Date the Form 1041-T was filed
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ISFINAL1041T" type="ofx:BooleanType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Is this the final Form 1041 for the estate or trust?
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="BENEFICIARYID" type="ofx:GenericNameType" minOccurs="0"/>
+                    <xsd:element name="BENEFICIARYINFO" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="NAME" type="ofx:GenericNameType"/>
+                                <xsd:element name="ADDR1" type="ofx:AddressType"/>
+                                <xsd:element name="ADDR2" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="ADDR3" type="ofx:AddressType" minOccurs="0"/>
+                                <xsd:element name="CITY" type="ofx:AddressType"/>
+                                <xsd:element name="STATE" type="ofx:StateType"/>
+                                <xsd:element name="POSTALCODE" type="ofx:ZipType" minOccurs="0"/>
+                                <xsd:element name="PHONE" type="ofx:PhoneType" minOccurs="0"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="DOMESTICBENEFICIARY" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="FOREIGNBENEFICIARY" type="ofx:BooleanType" minOccurs="0"/>
+                    <xsd:element name="INTERESTINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="ORDINARYDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="QUALIFIEDDIVIDEND" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETSTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETLTCAPITALGAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="RATEGAIN28" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="UNRECAP1250GAIN" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERPORTFOLIOINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="ORDINARYBUSINESSINC" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="NETRENTALREINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="OTHERRENTALINCOME" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="APPORTIONDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="ESTATETAXDEDUCTION" type="ofx:AmountType" minOccurs="0"/>
+                    <xsd:element name="FINALYRDEDUCTIONS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="AMTITEMS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="CREDITS" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="OTHERINFO" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="K1CODE" type="ofx:GenericNameType" minOccurs="0"/>
+                                <xsd:element name="AMOUNT" type="ofx:AmountType"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
 </xsd:schema>
