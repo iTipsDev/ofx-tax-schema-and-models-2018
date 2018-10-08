@@ -414,9 +414,9 @@ Apr27 2015 - changed 1095-B and 1095-C  required tags to optional
                                                 <xsd:documentation>First name</xsd:documentation>
                                             </xsd:annotation>
                                         </xsd:element>
-                                        <xsd:element name="MIDDLEINIT" type="ofx:GenericNameType" minOccurs="0">
+                                        <xsd:element name="MIDDLENAME" type="ofx:GenericNameType" minOccurs="0">
                                             <xsd:annotation>
-                                                <xsd:documentation>Middle initial</xsd:documentation>
+                                                <xsd:documentation>Middle name</xsd:documentation>
                                             </xsd:annotation>
                                         </xsd:element>
                                         <xsd:element name="LASTNAME" type="ofx:GenericNameType">
